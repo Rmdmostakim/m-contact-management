@@ -1,0 +1,16 @@
+{
+  "name": "contact-management",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development nodemon app",
+    "start": "cross-env NODE_ENV=production nodemon app"
+  },
+  "dependencies": {
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.1.4",
+    "express": "^4.18.2",
+    "mongoose": "^7.2.3",
+    "node": "^20.2.0"
+  }
+}
