@@ -1,7 +1,7 @@
 const express = require("express");
 const contact = express.Router();
-const appMiddleware = require("../../middleware/app");
-const userMiddleware = require("../../middleware/user");
+const appMiddleware = require("../../app/http/middleware/app");
+const userMiddleware = require("../../app/http/middleware/user");
 // app middleware checking
 contact.all("*", appMiddleware);
 // get all user contacts

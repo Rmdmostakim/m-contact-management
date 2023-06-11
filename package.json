@@ -7,9 +7,11 @@
     "start": "cross-env NODE_ENV=production nodemon app"
   },
   "dependencies": {
+    "bcrypt": "^5.1.0",
     "cross-env": "^7.0.3",
     "dotenv": "^16.1.4",
     "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.2.3",
     "node": "^20.2.0"
   }
