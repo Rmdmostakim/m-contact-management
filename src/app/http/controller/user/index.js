@@ -1,6 +1,7 @@
 //dependencies
 const bcrypt = require("bcrypt");
 const User = require("../../../models/user");
+const Token = require("../../../models/token");
 const validators = require("../../../validators");
 const { encode } = require("../../../helpers");
 
@@ -35,7 +36,21 @@ user.login = async (req, res) => {
       name: user.name,
       uuid: user.uuid,
     });
-    res.status(200).json({ token });
+
+    try {
+      const accessToken = {
+        user_uuid: user.uuid,
+        token,
+        expired: new Date().setDate(new Date().getDate() + 30),
+      };
+      const newToken = new Token(accessToken);
+      await newToken.save();
+      res.status(201).json({
+        token,
+      });
+    } catch (err) {
+      validators(err, res);
+    }
   } catch (error) {
     res.status(500).json({ error: "Server error" });
   }

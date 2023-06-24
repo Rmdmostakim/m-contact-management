@@ -2,27 +2,15 @@ const express = require("express");
 const contact = express.Router();
 const appMiddleware = require("../../app/http/middleware/app");
 const userMiddleware = require("../../app/http/middleware/user");
+const controller = require("../../app/http/controller/contact");
 // app middleware checking
 contact.all("*", appMiddleware);
-// get all user contacts
-contact.get("/:user", (req, res) => {
-  res.send("user all contact");
-});
-// get specific user contact
-contact.get("/:user/:contactId", (req, res) => {
-  res.send("user specific contact");
-});
 // store single contact
-contact.post("/store", userMiddleware, (req, res) => {
-  res.send("store contact");
-});
+contact.post("/store", userMiddleware, controller.store);
 // update single contact
-contact.put("/update/:contactId", userMiddleware, (req, res) => {
-  res.send("update contact");
-});
+contact.put("/update", userMiddleware, controller.update);
 // delete single contact
-contact.delete("/delete/:contactId", userMiddleware, (req, res) => {
-  res.send("delete contact");
-});
-
+contact.delete("/delete/:uuid", userMiddleware, controller.delete);
+// get all contacts
+contact.get("/all", userMiddleware, controller.all);
 module.exports = contact;

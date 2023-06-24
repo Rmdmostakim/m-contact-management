@@ -97,5 +97,10 @@ schema.pre("save", async function (next) {
     return next(error);
   }
 });
-
+// Convert UUID buffer to string before returning the document
+schema.set("toObject", { getters: true });
+schema.set("toJSON", { getters: true });
+schema.path("uuid").get(function (uuid) {
+  return uuid.toString("hex");
+});
 module.exports = schema;

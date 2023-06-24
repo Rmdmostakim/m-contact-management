@@ -10,4 +10,14 @@ token.encode = (payload) => {
   return false;
 };
 
+token.decode = (jwtToken) => {
+  try {
+    const decoded = jwt.verify(jwtToken, serverEnv.app_key);
+    return decoded;
+  } catch (err) {
+    console.error("JWT decoding error:", err);
+    return null;
+  }
+};
+
 module.exports = token;

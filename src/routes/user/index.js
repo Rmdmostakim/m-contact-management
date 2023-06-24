@@ -7,5 +7,5 @@ const controller = require("../../app/http/controller/user");
 user.all("*", appMiddleware);
 // user routes
 user.post("/store", userMiddleware, controller.store);
-user.post("/login", userMiddleware, controller.login);
+user.post("/login", appMiddleware, controller.login);
 module.exports = user;
